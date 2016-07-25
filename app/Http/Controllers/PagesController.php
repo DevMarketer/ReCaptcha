@@ -16,6 +16,15 @@ class PagesController extends Controller
     	$name = $request->name;
     	$gender = $request->gender;
 
-    	return view('name')->withName($name)->withGender($gender);
+    	$token = $request->input('g-recaptcha-response');
+
+    	if ($token) {
+    		# we know it was submitted
+    		return view('name')->withName($name)->withGender($gender);
+    	} else {
+    		return redirect('/');
+    	}
+
+    	
     }
 }
