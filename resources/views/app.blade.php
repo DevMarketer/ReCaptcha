@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +29,20 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    
+    <script>
+      
+      $(function() {
+        $('#form').submit(function(event) {
+          var verified = grecaptcha.getResponse();
+          if (verified.length === 0) {
+            event.preventDefault();
+          }
+        });
+      });
+
+
+    </script>
+
   </body>
 </html>
